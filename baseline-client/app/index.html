@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="baselineAdmin">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>baseline</title>
+    <link rel="stylesheet"
+          href="lib/bootstrap-3.3.7-dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet"
+          href="lib/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet"
+          href="lib/ajaxloader/loader.css"/>
+    <!--  JQuery -->
+    <script src="lib/jquery/jquery-2.0.3.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <!-- AngularJS -->
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular/angular-resource.min.js"></script>
+    <script src="lib/angular/angular-route.min.js"></script>
+</head>
+<body ng-controller="IndexController">
+<div class="container main">
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Panel heading</div>
+
+        <!-- Table -->
+        <div id="results" when-scrolled="loadMore()">
+            <table class="table">
+                <tbody>
+                <tr ng-repeat="organization in organizations">
+                    <td class="nameColumn">{{organization.name}}</td>
+                </tr>
+                </tbody>
+
+            </table>
+        </div>
+        <div id="escapingBallG" class="center" ng-show="loading">
+            <div id="escapingBall_1" class="escapingBallG"></div>
+        </div>
+    </div>
+
+</div>
+<script src="dist/app.js"></script>
+</body>
+</html>
