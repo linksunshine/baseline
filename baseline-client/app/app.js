@@ -3,23 +3,29 @@
  */
 var baselineAdmin = angular.module("baselineAdmin", ["ngResource","ngRoute"]);
 
-baselineAdmin.directive("whenScrolled", function() {
-    return function(scope, elm, attr) {
-        var raw = elm[0];
-        elm.bind("scroll", function() {
-            if (raw.scrollTop + raw.offsetHeight >= raw.scrollHeight - 1) {
-                scope.$apply(attr.whenScrolled);
-            }
-        });
-    };
-});
-
 baselineAdmin.value("admin.user.url", "http://localhost:8070/rest/organization/list");
 
-/*baselineAdmin
-    .config(function($httpProvider){
-        delete $httpProvider.defaults.headers.common['X-Requested-With'];
-    });*/
+/*
+baselineAdmin.config(['$routeProvider', function($routeProvider) {
+    $routeProvider
+        .when('/login', {
+            templateUrl: "login.html",
+            controller: "LoginController"
+        })
+        .when('/users', {
+            templateUrl: "admin/users/admin-users.html",
+            controller: "UserController"
+        })
+        .when('/roles', {
+            templateUrl: "admin/roles/admin-roles.html",
+            controller: "RolesController"
+        })
+        .otherwise({
+            redirectTo: '/users'
+
+        });
+}]);
+*/
 
 baselineAdmin.factory('organizationService', ['$resource', 'admin.user.url', function ($resource, serviceUrl) {
     return $resource('/organization/list', {}, {
