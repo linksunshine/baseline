@@ -21,6 +21,7 @@
         <commons.codec.version>1.9</commons.codec.version>
         <commons.net.version>3.3</commons.net.version>
         <jackson.version>1.9.13</jackson.version>
+        <shiro.version>1.2.3</shiro.version>
         <aspectj.version>1.6.12</aspectj.version>
         <hibernate.validator.version>5.1.1.Final</hibernate.validator.version>
         <junit.version>4.11</junit.version>
@@ -201,6 +202,34 @@
             <version>3.2.1</version>
         </dependency>
         <!-- apache end-->
+
+        <!-- shiro begin-->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-ehcache</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-core</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-web</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-quartz</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+        <!-- shiro end-->
 
         <!-- aspectjweaver start-->
         <dependency>
