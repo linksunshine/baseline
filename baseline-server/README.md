@@ -7,3 +7,6 @@
 
 #test
 ##junit、hamcrest、mockito、spring-test 参考地址:https://github.com/zhangkaitao
+
+#数据库管理
+##LiquiBase 命令：$ mvn liquibase:update

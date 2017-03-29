@@ -1,0 +1,12 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.2.xsd">
+
+    <changeSet id="1.1.0-linksunshine" author="linksunshine">
+        <sqlFile encoding="UTF-8" relativeToChangelogFile="true" path="001_p_permission_create.sql"/>
+        <sqlFile encoding="UTF-8" relativeToChangelogFile="true" path="002_p_role_create.sql"/>
+        <sqlFile encoding="UTF-8" relativeToChangelogFile="true" path="003_p_role_permission_create.sql"/>
+        <sqlFile encoding="UTF-8" relativeToChangelogFile="true" path="004_p_user_create.sql"/>
+        <sqlFile encoding="UTF-8" relativeToChangelogFile="true" path="005_p_user_role_create.sql"/>
+    </changeSet>
+</databaseChangeLog>
