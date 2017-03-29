@@ -11,6 +11,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
 
 /**
  * Created by ucmed on 2017/3/20.
@@ -27,14 +33,23 @@ public class LoginController extends BaseController {
     private SecurityService securityService;
 
     @RequestMapping(method = RequestMethod.POST)
-    public UserDTO login(@RequestBody UserDTO user) {
+    @ResponseBody
+    public UserDTO login(@RequestBody UserDTO user,HttpServletRequest request) {
 
         UserDTO userForAuth = null;
 
         try {
-            userForAuth = securityService.login(user);
+            /*userForAuth = securityService.login(user);*/
+            userForAuth=new UserDTO();
             userForAuth.setMessageCode("200");
             userForAuth.setMessageInfo("登录成功");
+
+
+            userForAuth.setUserId(UUID.randomUUID().toString());
+            Set<String> permissions=new HashSet<String>();
+            permissions.add("S:1");
+            userForAuth.setPermissions(permissions);
+
             return userForAuth;
         } catch (ExcessiveAttemptsException eaEx) {
             LOGGER.error("", eaEx);

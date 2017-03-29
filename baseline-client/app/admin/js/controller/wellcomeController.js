@@ -1,7 +1,8 @@
 /**
  * Created by ucmed on 2017/3/24.
  */
-baselineAdmin.controller('wellcomeController',['$scope','$location','loginService',function($scope,$location,loginService){
+baselineAdmin.controller('wellcomeController',['$scope','$location',function($scope,$location){
+    console.log('2'+$location.path());
 /*    var form = {};
     $scope.form = form;
 
