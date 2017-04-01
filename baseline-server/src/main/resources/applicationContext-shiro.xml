@@ -12,7 +12,7 @@
         <property name="filterChainDefinitions">
             <value>
                 <!-- 静态资源允许访问 -->
-                /app/** = anon
+                /rest/** = anon
                 /assets/** = anon
                 <!-- 登录页允许访问 -->
                 /rest/login = anon

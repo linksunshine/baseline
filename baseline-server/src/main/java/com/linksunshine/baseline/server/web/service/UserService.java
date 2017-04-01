@@ -2,6 +2,7 @@ package com.linksunshine.baseline.server.web.service;
 
 import com.linksunshine.baseline.server.web.dto.UserDTO;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -28,4 +29,6 @@ public interface UserService {
 
 
     UserDTO findByUserId(String userId);
+
+    List<UserDTO> loadList();
 }

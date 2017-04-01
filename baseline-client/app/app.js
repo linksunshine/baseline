@@ -1,9 +1,9 @@
 /**
  * Main application features
  */
-var baselineAdmin = angular.module("baselineAdmin", ['security', 'ngCookies', "ngResource", "ngRoute", 'ui.router.state'])
+var baselineAdmin = angular.module("baselineAdmin", [ 'ngCookies', "ngResource", "ngRoute", 'ui.router.state','security','ngDialog'])
     .value("security.login.url", "http://localhost:8070/rest/login")
-    .value("admin.user.url", "http://localhost:8070/rest/organization/list")
+    .value("admin.user.url", "http://localhost:8070/rest")
 /**
  * Created by ucmed on 2017/3/24.
  */
@@ -50,20 +50,28 @@ var baselineAdmin = angular.module("baselineAdmin", ['security', 'ngCookies', "n
                     permission: USER_PERMISSION.PROJECT_VIEW
                 }
             })
-            .when('/login', {
-                templateUrl: "admin/pages/login.html",
-                controller: "loginController",
+            .when('/user', {
+                templateUrl: "admin/pages/user.html",
+                controller: "userController",
                 data: {
                     public: true,
-                    permission: USER_PERMISSION.PROJECT_VIEW
+                    permission: USER_PERMISSION.USER_VIEW
                 }
             })
-            .when('/register', {
-                templateUrl: "admin/pages/register.html",
-                controller: "registerController",
+            .when('/role', {
+                templateUrl: "admin/pages/role.html",
+                controller: "roleController",
                 data: {
                     public: true,
-                    permission: USER_PERMISSION.PROJECT_VIEW
+                    permission: USER_PERMISSION.USER_VIEW
+                }
+            })
+            .when('/permission', {
+                templateUrl: "admin/pages/permission.html",
+                controller: "permissionController",
+                data: {
+                    public: true,
+                    permission: USER_PERMISSION.USER_VIEW
                 }
             })
             .otherwise({
@@ -77,7 +85,6 @@ var baselineAdmin = angular.module("baselineAdmin", ['security', 'ngCookies', "n
             $rootScope.isAuthorized = AuthService.isAuthorized;
             $rootScope.isAuthenticated = AuthService.isAuthenticated;
             $rootScope.logout = AuthService.logout;
-            console.log($rootScope.logout);
 
         }
     ]);

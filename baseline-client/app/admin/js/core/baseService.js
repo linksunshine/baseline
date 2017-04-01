@@ -4,11 +4,7 @@
 baselineAdmin.factory("baseService",['$http',function($http){
     return{
         post : function(url,params){
-            var paramsBody = {};
-            paramsBody.random = Math.random();
-            paramsBody.timestamp = new Date();
-            paramsBody.body = params;
-            return $http.post(url,paramsBody);
+            return $http.post(url,params);
         },
         delete : function(url,params){
             var paramsBody = {};

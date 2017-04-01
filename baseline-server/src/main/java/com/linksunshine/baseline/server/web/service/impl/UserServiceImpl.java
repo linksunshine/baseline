@@ -1,5 +1,6 @@
 package com.linksunshine.baseline.server.web.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.linksunshine.baseline.server.web.core.orika.OrikaBeanMapper;
 import com.linksunshine.baseline.server.web.dao.UserMapper;
 import com.linksunshine.baseline.server.web.dto.UserDTO;
@@ -7,7 +8,9 @@ import com.linksunshine.baseline.server.web.model.User;
 import com.linksunshine.baseline.server.web.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tk.mybatis.mapper.entity.Example;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -55,4 +58,14 @@ public class UserServiceImpl implements UserService {
         model.setDeletionState("0");
         return orikaBeanMapper.map(userMapper.selectOne(model), UserDTO.class);
     }
+
+    public List<UserDTO> loadList() {
+        User user = new User();
+        user.setDeletionState("0");
+        Example example = new Example(User.class);
+        example.setOrderByClause("createdon desc");//注意用的是类中的属性，不是数据库中的属性
+        example.createCriteria().andEqualTo(user);
+        return orikaBeanMapper.mapAsList(userMapper.selectByExample(example), UserDTO.class);
+    }
 }
+

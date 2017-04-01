@@ -48,6 +48,7 @@ public class LoginController extends BaseController {
             userForAuth.setUserId(UUID.randomUUID().toString());
             Set<String> permissions=new HashSet<String>();
             permissions.add("S:1");
+            permissions.add("U:1");
             userForAuth.setPermissions(permissions);
 
             return userForAuth;
