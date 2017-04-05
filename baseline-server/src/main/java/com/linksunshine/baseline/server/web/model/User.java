@@ -3,14 +3,10 @@ package com.linksunshine.baseline.server.web.model;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.io.Serializable;
 import java.util.Date;
 
 @Table(name = "p_user")
-public class User implements Serializable {
-
-    private static final long serialVersionUID = -7123450116222830533L;
-
+public class User {
     /**
      * 主键
      */

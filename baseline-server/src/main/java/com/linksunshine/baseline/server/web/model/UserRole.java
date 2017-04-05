@@ -1,20 +1,28 @@
-package com.linksunshine.baseline.server.web.dto;
+package com.linksunshine.baseline.server.web.model;
 
-import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.*;
 
-public class PermissionDTO implements Serializable {
-    private String permissionId;
+@Table(name = "p_user_role")
+public class UserRole {
+    /**
+     * 主键
+     */
+    @Id
+    @Column(name = "p_user_role_id")
+    private String pUserRoleId;
 
     /**
-     * 权限名称
+     * 外键用户id
      */
-    private String permissionName;
+    @Column(name = "p_user_id")
+    private String pUserId;
 
     /**
-     * 权限字符串
+     * 外键角色id
      */
-    private String permission;
+    @Column(name = "p_role_id")
+    private String pRoleId;
 
     /**
      * 创建者
@@ -39,6 +47,7 @@ public class PermissionDTO implements Serializable {
     /**
      * 删除状态
      */
+    @Column(name = "deletion_state")
     private String deletionState;
 
     /**
@@ -46,38 +55,58 @@ public class PermissionDTO implements Serializable {
      */
     private String description;
 
-    public String getPermissionId() {
-        return permissionId;
-    }
-
-    public void setPermissionId(String permissionId) {
-        this.permissionId = permissionId;
-    }
-
-    public String getPermissionName() {
-        return permissionName;
-    }
-
-    public void setPermissionName(String permissionName) {
-        this.permissionName = permissionName;
+    /**
+     * 获取主键
+     *
+     * @return p_user_role_id - 主键
+     */
+    public String getpUserRoleId() {
+        return pUserRoleId;
     }
 
     /**
-     * 获取权限字符串
+     * 设置主键
      *
-     * @return permission - 权限字符串
+     * @param pUserRoleId 主键
      */
-    public String getPermission() {
-        return permission;
+    public void setpUserRoleId(String pUserRoleId) {
+        this.pUserRoleId = pUserRoleId;
     }
 
     /**
-     * 设置权限字符串
+     * 获取外键用户id
      *
-     * @param permission 权限字符串
+     * @return p_user_id - 外键用户id
      */
-    public void setPermission(String permission) {
-        this.permission = permission;
+    public String getpUserId() {
+        return pUserId;
+    }
+
+    /**
+     * 设置外键用户id
+     *
+     * @param pUserId 外键用户id
+     */
+    public void setpUserId(String pUserId) {
+        this.pUserId = pUserId;
+    }
+
+    /**
+     * 获取外键角色id
+     *
+     * @return p_role_id - 外键角色id
+     */
+    public String getpRoleId() {
+        return pRoleId;
+    }
+
+    /**
+     * 设置外键角色id
+     *
+     * @param pRoleId 外键角色id
+     */
+    public void setpRoleId(String pRoleId) {
+        this.pRoleId = pRoleId;
     }
 
     /**

@@ -1,7 +1,7 @@
 /**
  * Main application features
  */
-var baselineAdmin = angular.module("baselineAdmin", [ 'ngCookies', "ngResource", "ngRoute", 'ui.router.state','security','ngDialog'])
+var baselineAdmin = angular.module("baselineAdmin", [ 'ngCookies', "ngResource", "ngRoute", 'ui.router.state','security','ngDialog','checklist-model','tm.pagination'])
     .value("security.login.url", "http://localhost:8070/rest/login")
     .value("admin.user.url", "http://localhost:8070/rest")
 /**
@@ -44,14 +44,14 @@ var baselineAdmin = angular.module("baselineAdmin", [ 'ngCookies', "ngResource",
     .config(['$routeProvider', 'USER_PERMISSION', function ($routeProvider, USER_PERMISSION) {
         $routeProvider
             .when('/', {
-                templateUrl: "admin/pages/wellcome.html",
+                templateUrl: "admin/pages/content/wellcome.html",
                 controller: "wellcomeController",
                 data: {
                     permission: USER_PERMISSION.PROJECT_VIEW
                 }
             })
             .when('/user', {
-                templateUrl: "admin/pages/user.html",
+                templateUrl: "admin/pages/content/user.html",
                 controller: "userController",
                 data: {
                     public: true,
@@ -59,7 +59,7 @@ var baselineAdmin = angular.module("baselineAdmin", [ 'ngCookies', "ngResource",
                 }
             })
             .when('/role', {
-                templateUrl: "admin/pages/role.html",
+                templateUrl: "admin/pages/content/role.html",
                 controller: "roleController",
                 data: {
                     public: true,
@@ -67,7 +67,7 @@ var baselineAdmin = angular.module("baselineAdmin", [ 'ngCookies', "ngResource",
                 }
             })
             .when('/permission', {
-                templateUrl: "admin/pages/permission.html",
+                templateUrl: "admin/pages/content/permission.html",
                 controller: "permissionController",
                 data: {
                     public: true,

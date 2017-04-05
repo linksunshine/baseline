@@ -1,0 +1,53 @@
+<section class="content" ng-controller="permissionController">
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">资源设置</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-lg-6">
+                    <button type="button" ng-click="permissionAdd()" class="btn btn-default">add permission</button>
+                </div>
+                <!-- /.col-lg-6 -->
+                <div class="col-lg-6">
+                    <div class="input-group">
+                        <input type="text" class="form-control" ng-model="search" placeholder="Search for...">
+                          <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" ng-click="searchKeyDown($event)">Go!</button>
+                          </span>
+                    </div>
+                    <!-- /input-group -->
+                </div>
+                <!-- /.col-lg-6 -->
+            </div>
+            <!-- /.row -->
+        </div>
+
+        <!-- Table -->
+        <table class="table">
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>名称</th>
+                <th>资源标示</th>
+                <th>创建时间</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="l in permissionList">
+                <td ng-bind="$index+startIndex">1</td>
+                <td>{{l.permissionName}}</td>
+                <td>{{l.permission}}</td>
+                <td>{{l.createdon}}</td>
+                <td>
+                    <button type="button" class="btn btn-default" ng-click="permissionUpdate(l)">修改</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="panel-body">
+            <tm-pagination conf="paginationConf"></tm-pagination>
+        </div>
+    </div>
+</section>
+

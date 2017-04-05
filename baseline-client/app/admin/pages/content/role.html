@@ -1,0 +1,53 @@
+<section class="content" ng-controller="roleController">
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">角色设置</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-lg-6">
+                    <button type="button" ng-click="roleAdd()" class="btn btn-default">add role</button>
+                </div>
+                <!-- /.col-lg-6 -->
+                <div class="col-lg-6">
+                    <div class="input-group">
+                        <input type="text" class="form-control" ng-model="search" placeholder="Search for...">
+                          <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" ng-click="searchKeyDown($event)">Go!</button>
+                          </span>
+                    </div>
+                    <!-- /input-group -->
+                </div>
+                <!-- /.col-lg-6 -->
+            </div>
+            <!-- /.row -->
+        </div>
+
+        <!-- Table -->
+        <table class="table">
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>角色名称</th>
+                <th>创建时间</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="l in roleList">
+                <td ng-bind="$index+startIndex">1</td>
+                <td>{{l.roleName}}</td>
+                <td>{{l.createdon}}</td>
+                <td>
+                    <button type="button" class="btn btn-default" ng-click="permissionAllocate(l)">资源分配</button>
+                    <button type="button" class="btn btn-default" ng-click="roleUpdate(l)">修改</button>
+                    <button type="button" class="btn btn-default">停用</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="panel-body">
+            <tm-pagination conf="paginationConf"></tm-pagination>
+        </div>
+    </div>
+</section>
+

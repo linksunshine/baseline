@@ -1,5 +1,6 @@
 package com.linksunshine.baseline.server.web.service;
 
+import com.linksunshine.baseline.server.web.dto.RoleDTO;
 import com.linksunshine.baseline.server.web.dto.UserDTO;
 
 import java.util.List;
@@ -9,6 +10,10 @@ import java.util.Set;
  * Created by ucmed on 2017/3/27.
  */
 public interface UserService {
+
+    int insert(UserDTO userDTO);
+
+
     UserDTO findByUsername(String username);
 
     /**
@@ -30,5 +35,18 @@ public interface UserService {
 
     UserDTO findByUserId(String userId);
 
-    List<UserDTO> loadList();
+    int count();
+
+    List<UserDTO> loadList(int pageNo, int pageSize);
+
+    int countSearch(String searchKey);
+
+    List<UserDTO> search(int pageNo, int pageSize, String searchKey);
+
+
+    List<String> findUserRole(String userId);
+
+    int insertUpdateRole(UserDTO userDTO);
+
+    int updateUser(UserDTO userDTO);
 }

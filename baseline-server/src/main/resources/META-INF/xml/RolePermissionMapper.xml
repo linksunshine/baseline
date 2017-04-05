@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.linksunshine.baseline.server.web.dao.RolePermissionMapper" >
+  <resultMap id="BaseResultMap" type="com.linksunshine.baseline.server.web.model.RolePermission" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="p_role_permission_id" property="pRolePermissionId" jdbcType="VARCHAR" />
+    <result column="p_role_id" property="pRoleId" jdbcType="VARCHAR" />
+    <result column="p_permission_id" property="pPermissionId" jdbcType="VARCHAR" />
+    <result column="createdby" property="createdby" jdbcType="VARCHAR" />
+    <result column="createdon" property="createdon" jdbcType="TIMESTAMP" />
+    <result column="modifiedby" property="modifiedby" jdbcType="VARCHAR" />
+    <result column="modifiedon" property="modifiedon" jdbcType="TIMESTAMP" />
+    <result column="deletion_state" property="deletionState" jdbcType="CHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+  </resultMap>
+
+
+  <insert id="insertUpdatePermission"
+          parameterType="java.util.Set">
+    insert into p_role_permission
+    (p_role_permission_id,p_role_id, p_permission_id,
+    createdby, createdon, modifiedby, modifiedon,
+    deletion_state, description)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (
+      #{item.pRolePermissionId,jdbcType=VARCHAR},
+      #{item.pRoleId,jdbcType=VARCHAR},
+      #{item.pPermissionId,jdbcType=VARCHAR},
+      #{item.createdby,jdbcType=VARCHAR},
+      #{item.createdon,jdbcType=TIMESTAMP},
+      #{item.modifiedby,jdbcType=VARCHAR},
+      #{item.modifiedon,jdbcType=TIMESTAMP},
+      #{item.deletionState,jdbcType=CHAR},
+      #{item.description,jdbcType=VARCHAR}
+      )
+    </foreach>
+  </insert>
+
+</mapper>

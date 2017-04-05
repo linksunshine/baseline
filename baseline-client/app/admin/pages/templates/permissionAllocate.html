@@ -1,0 +1,19 @@
+<div class="ngdialog-message">
+    <div class="panel panel-default center-block">
+        <div class="panel-body">
+            <div class="hero-unit">
+                <span ng-repeat="l in data.permissionDTOs">
+                    <span class="glyphicon glyphicon-grain"><input type="checkbox" checklist-model="data.rolePermissions" checklist-value="l.permissionId">{{l.permissionName}}</span>
+                </span>
+            </div>
+            <div class="ngdialog-buttons">
+                <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="confirm(data)">确定</button>
+                <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog('button')">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

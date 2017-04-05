@@ -4,6 +4,7 @@
 DROP TABLE IF EXISTS `p_permission`;
 CREATE TABLE `p_permission` (
   `p_permission_id` varchar(40) NOT NULL COMMENT '主键',
+  `permission_name` varchar(500) DEFAULT '' COMMENT '权限名称',
   `permission` varchar(100) NOT NULL COMMENT '权限字符串',
   `createdby` varchar(40) NOT NULL DEFAULT '' COMMENT '创建者',
   `createdon` datetime NOT NULL COMMENT '创建时间',

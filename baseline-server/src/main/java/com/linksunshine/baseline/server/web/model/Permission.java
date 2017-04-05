@@ -1,14 +1,22 @@
-package com.linksunshine.baseline.server.web.dto;
+package com.linksunshine.baseline.server.web.model;
 
-import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.*;
 
-public class PermissionDTO implements Serializable {
+@Table(name = "p_permission")
+public class Permission {
+    /**
+     * 主键
+     */
+    @Id
+    @Column(name = "p_permission_id")
     private String permissionId;
+
 
     /**
      * 权限名称
      */
+    @Column(name = "permission_name")
     private String permissionName;
 
     /**
@@ -39,6 +47,7 @@ public class PermissionDTO implements Serializable {
     /**
      * 删除状态
      */
+    @Column(name = "deletion_state")
     private String deletionState;
 
     /**
@@ -54,10 +63,21 @@ public class PermissionDTO implements Serializable {
         this.permissionId = permissionId;
     }
 
+
+    /**
+     * 获取权限名称
+     *
+     * @return permission_name - 权限名称
+     */
     public String getPermissionName() {
         return permissionName;
     }
 
+    /**
+     * 设置权限名称
+     *
+     * @param permissionName 权限名称
+     */
     public void setPermissionName(String permissionName) {
         this.permissionName = permissionName;
     }

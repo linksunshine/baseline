@@ -2,11 +2,10 @@ package com.linksunshine.baseline.server.web.dto;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 public class UserDTO implements Serializable {
-
-    private static final long serialVersionUID = -7123450116222830533L;
 
     /**
      * 主键
@@ -146,11 +145,6 @@ public class UserDTO implements Serializable {
         this.salt = salt;
     }
 
-
-    public String getCredentialsSalt() {
-        return userId + salt;
-    }
-
     public String getMobile() {
         return mobile;
     }
@@ -260,5 +254,24 @@ public class UserDTO implements Serializable {
 
     public void setPermissions(Set<String> permissions) {
         this.permissions = permissions;
+    }
+
+    private List<RoleDTO> roleDTOs;
+    private List<String> userRoles;
+
+    public List<RoleDTO> getRoleDTOs() {
+        return roleDTOs;
+    }
+
+    public void setRoleDTOs(List<RoleDTO> roleDTOs) {
+        this.roleDTOs = roleDTOs;
+    }
+
+    public List<String> getUserRoles() {
+        return userRoles;
+    }
+
+    public void setUserRoles(List<String> userRoles) {
+        this.userRoles = userRoles;
     }
 }

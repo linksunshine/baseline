@@ -2,19 +2,18 @@ package com.linksunshine.baseline.server.web.dto;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
-public class PermissionDTO implements Serializable {
-    private String permissionId;
+public class RoleDTO implements Serializable {
+    /**
+     * 主键
+     */
+    private String pRoleId;
 
     /**
-     * 权限名称
+     * 角色名称
      */
-    private String permissionName;
-
-    /**
-     * 权限字符串
-     */
-    private String permission;
+    private String roleName;
 
     /**
      * 创建者
@@ -46,38 +45,40 @@ public class PermissionDTO implements Serializable {
      */
     private String description;
 
-    public String getPermissionId() {
-        return permissionId;
-    }
-
-    public void setPermissionId(String permissionId) {
-        this.permissionId = permissionId;
-    }
-
-    public String getPermissionName() {
-        return permissionName;
-    }
-
-    public void setPermissionName(String permissionName) {
-        this.permissionName = permissionName;
+    /**
+     * 获取主键
+     *
+     * @return p_role_id - 主键
+     */
+    public String getpRoleId() {
+        return pRoleId;
     }
 
     /**
-     * 获取权限字符串
+     * 设置主键
      *
-     * @return permission - 权限字符串
+     * @param pRoleId 主键
      */
-    public String getPermission() {
-        return permission;
+    public void setpRoleId(String pRoleId) {
+        this.pRoleId = pRoleId;
     }
 
     /**
-     * 设置权限字符串
+     * 获取角色名称
      *
-     * @param permission 权限字符串
+     * @return role_name - 角色名称
      */
-    public void setPermission(String permission) {
-        this.permission = permission;
+    public String getRoleName() {
+        return roleName;
+    }
+
+    /**
+     * 设置角色名称
+     *
+     * @param roleName 角色名称
+     */
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 
     /**
@@ -186,5 +187,25 @@ public class PermissionDTO implements Serializable {
      */
     public void setDescription(String description) {
         this.description = description;
+    }
+
+
+    private List<PermissionDTO> permissionDTOs;
+    private List<String> rolePermissions;
+
+    public List<String> getRolePermissions() {
+        return rolePermissions;
+    }
+
+    public void setRolePermissions(List<String> rolePermissions) {
+        this.rolePermissions = rolePermissions;
+    }
+
+    public List<PermissionDTO> getPermissionDTOs() {
+        return permissionDTOs;
+    }
+
+    public void setPermissionDTOs(List<PermissionDTO> permissionDTOs) {
+        this.permissionDTOs = permissionDTOs;
     }
 }

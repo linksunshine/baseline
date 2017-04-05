@@ -96,6 +96,7 @@ angular.module("security", ["ngResource", "ngRoute"])
     .run(function ($rootScope, AUTH_EVENTS, AuthService, $location) {
         // $stateChangeStart if using ui-router (anglar-ui)
         $rootScope.$on('$routeChangeStart', function (event, next) {
+            console.log(next);
             if (typeof next.data === 'undefined' || typeof next.data.permission === 'undefined') {
                 return;
             }

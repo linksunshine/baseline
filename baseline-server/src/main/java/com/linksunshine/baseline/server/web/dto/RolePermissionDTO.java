@@ -1,20 +1,26 @@
 package com.linksunshine.baseline.server.web.dto;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
 
-public class PermissionDTO implements Serializable {
-    private String permissionId;
+public class RolePermissionDTO implements Serializable {
+    /**
+     * 主键
+     */
+    private String pRolePermissionId;
 
     /**
-     * 权限名称
+     * 外键角色id
      */
-    private String permissionName;
+    private String pRoleId;
 
     /**
-     * 权限字符串
+     * 外键角色id
      */
-    private String permission;
+    private String pPermissionId;
 
     /**
      * 创建者
@@ -46,38 +52,58 @@ public class PermissionDTO implements Serializable {
      */
     private String description;
 
-    public String getPermissionId() {
-        return permissionId;
-    }
-
-    public void setPermissionId(String permissionId) {
-        this.permissionId = permissionId;
-    }
-
-    public String getPermissionName() {
-        return permissionName;
-    }
-
-    public void setPermissionName(String permissionName) {
-        this.permissionName = permissionName;
+    /**
+     * 获取主键
+     *
+     * @return p_role_permission_id - 主键
+     */
+    public String getpRolePermissionId() {
+        return pRolePermissionId;
     }
 
     /**
-     * 获取权限字符串
+     * 设置主键
      *
-     * @return permission - 权限字符串
+     * @param pRolePermissionId 主键
      */
-    public String getPermission() {
-        return permission;
+    public void setpRolePermissionId(String pRolePermissionId) {
+        this.pRolePermissionId = pRolePermissionId;
     }
 
     /**
-     * 设置权限字符串
+     * 获取外键角色id
      *
-     * @param permission 权限字符串
+     * @return p_role_id - 外键角色id
      */
-    public void setPermission(String permission) {
-        this.permission = permission;
+    public String getpRoleId() {
+        return pRoleId;
+    }
+
+    /**
+     * 设置外键角色id
+     *
+     * @param pRoleId 外键角色id
+     */
+    public void setpRoleId(String pRoleId) {
+        this.pRoleId = pRoleId;
+    }
+
+    /**
+     * 获取外键角色id
+     *
+     * @return p_permission_id - 外键角色id
+     */
+    public String getpPermissionId() {
+        return pPermissionId;
+    }
+
+    /**
+     * 设置外键角色id
+     *
+     * @param pPermissionId 外键角色id
+     */
+    public void setpPermissionId(String pPermissionId) {
+        this.pPermissionId = pPermissionId;
     }
 
     /**
