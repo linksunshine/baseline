@@ -1,7 +1,7 @@
 /**
  * Main application features
  */
-var baselineAdmin = angular.module("baselineAdmin", [ 'ngCookies', "ngResource", "ngRoute", 'ui.router.state','security','ngDialog','checklist-model','tm.pagination'])
+var baselineAdmin = angular.module("baselineAdmin", ['ngCookies', "ngResource", "ngRoute", 'ui.router.state', 'security', 'ngDialog', 'checklist-model', 'tm.pagination', 'ui.router', 'angularUtils.directives.uiBreadcrumbs'])
     .value("security.login.url", "http://localhost:8070/rest/login")
     .value("admin.user.url", "http://localhost:8070/rest")
 /**
@@ -22,7 +22,7 @@ var baselineAdmin = angular.module("baselineAdmin", [ 'ngCookies', "ngResource",
             },
             response: function (response) {
                 var deferred = $q.defer();
-                if (response.data.status == status.ERROR) {//ϵͳ����
+                if (response.data.status == status.ERROR) {
                     $location.path('/error');
                     return deferred.promise;
                 } else if (response.data.status == status.FAILED) {
@@ -41,43 +41,71 @@ var baselineAdmin = angular.module("baselineAdmin", [ 'ngCookies', "ngResource",
         };
         return statusInterceptor;
     }])
-    .config(['$routeProvider', 'USER_PERMISSION', function ($routeProvider, USER_PERMISSION) {
-        $routeProvider
-            .when('/', {
-                templateUrl: "admin/pages/content/wellcome.html",
-                controller: "wellcomeController",
-                data: {
-                    permission: USER_PERMISSION.PROJECT_VIEW
+    .config(['$stateProvider', '$urlRouterProvider', 'USER_PERMISSION', function ($stateProvider, $urlRouterProvider, USER_PERMISSION) {
+        $stateProvider
+            .state('home', {
+                url: '^',
+                views: {
+                    'main@': {
+                        templateUrl: 'admin/pages/content/home.html',
+                        controller: "homeController"
+                    }
+                },
+                breadcrumb: {
+                    displayName: 'Home'
                 }
             })
-            .when('/user', {
-                templateUrl: "admin/pages/content/user.html",
-                controller: "userController",
-                data: {
-                    public: true,
-                    permission: USER_PERMISSION.USER_VIEW
-                }
-            })
-            .when('/role', {
-                templateUrl: "admin/pages/content/role.html",
-                controller: "roleController",
-                data: {
-                    public: true,
-                    permission: USER_PERMISSION.USER_VIEW
-                }
-            })
-            .when('/permission', {
-                templateUrl: "admin/pages/content/permission.html",
-                controller: "permissionController",
+            .state('user', {
+                url: '/user',
+                views: {
+                    'main@': {
+                        templateUrl: 'admin/pages/content/user.html',
+                        controller: "userController"
+                    }
+                },
                 data: {
                     public: true,
                     permission: USER_PERMISSION.USER_VIEW
+                },
+                breadcrumb: {
+                    displayName: '用户列表'
                 }
             })
-            .otherwise({
-                redirectTo: '/'
-
+            .state('role', {
+                url: '/role',
+                views: {
+                    'main@': {
+                        templateUrl: 'admin/pages/content/role.html',
+                        controller: "roleController"
+                    }
+                },
+                data: {
+                    public: true,
+                    permission: USER_PERMISSION.USER_VIEW
+                },
+                breadcrumb: {
+                    displayName: '角色列表'
+                }
+            })
+            .state('permission', {
+                url: '/permission',
+                views: {
+                    'main@': {
+                        templateUrl: 'admin/pages/content/permission.html',
+                        controller: "permissionController"
+                    }
+                },
+                data: {
+                    public: true,
+                    permission: USER_PERMISSION.USER_VIEW
+                },
+                breadcrumb: {
+                    displayName: '资源列表'
+                }
             });
+
+        $urlRouterProvider.otherwise('/home');
+
     }])
     .run(['$rootScope', '$location', '$cookieStore', 'USER_PERMISSION', 'AuthService', '$http',
         function ($rootScope, $location, $cookieStore, USER_PERMISSION, AuthService, $http) {

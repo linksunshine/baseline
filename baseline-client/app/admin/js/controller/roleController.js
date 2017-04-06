@@ -1,7 +1,7 @@
 /**
  * Created by ucmed on 2017/3/24.
  */
-baselineAdmin.controller('roleController', ['$scope', 'ngDialog', '$route','$location', 'roleService', function ($scope, ngDialog, $route,$location, roleService) {
+baselineAdmin.controller('roleController', ['$scope', 'ngDialog', '$route', '$location', '$state', 'roleService', function ($scope, ngDialog, $route, $location, $state, roleService) {
 
 
     /**
@@ -63,7 +63,9 @@ baselineAdmin.controller('roleController', ['$scope', 'ngDialog', '$route','$loc
             className: 'ngdialog-theme-default'
         }).then(function (value) {
             roleService.roleAdd(value);
-            $route.reload();
+            $state.go('role', {}, {
+                reload: true
+            });
         }, function (reason) {
         });
     };
@@ -81,7 +83,9 @@ baselineAdmin.controller('roleController', ['$scope', 'ngDialog', '$route','$loc
                     }]
                 }).then(function (value) {
                     roleService.insertUpdatePermission(value);
-                    $route.reload();
+                    $state.go('role', {}, {
+                        reload: true
+                    });
                 }, function (reason) {
                 });
 
@@ -99,7 +103,9 @@ baselineAdmin.controller('roleController', ['$scope', 'ngDialog', '$route','$loc
             }]
         }).then(function (value) {
             roleService.roleUpdate(value);
-            $route.reload();
+            $state.go('role', {}, {
+                reload: true
+            });
         }, function (reason) {
         });
     };

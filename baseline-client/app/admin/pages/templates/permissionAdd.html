@@ -1,22 +1,39 @@
 <div class="ngdialog-message">
     <div class="panel panel-default">
         <div class="panel-body">
-            <form>
-                <div class="form-group">
-                    <label for="permissionName">permissionName</label>
-                    <input type="text" class="form-control" id="permissionName" ng-model="data.permissionName" placeholder="资源名称">
+            <form name="submitForm" novalidate>
+                <div class="form-group"
+                     ng-class="{ 'has-error' : submitForm.permissionName.$invalid && !submitForm.permissionName.$pristine }">
+                    <label for="permissionName"><span class="text-danger">*</span>&nbsp;资源名称</label>
+                    <input type="text" name="permissionName" class="form-control" id="permissionName" ng-model="data.permissionName"
+                           placeholder="资源名称" required>
+
+                    <p ng-show="submitForm.permissionName.$invalid && !submitForm.permissionName.$pristine"
+                       class="help-block">
+                        请输入资源名称.</p>
+                </div>
+                <div class="form-group"
+                     ng-class="{ 'has-error' : submitForm.permission.$invalid && !submitForm.permission.$pristine }">
+                    <label for="permission"><span class="text-danger">*</span>&nbsp;资源字符串</label>
+                    <input type="text" name="permission" class="form-control" id="permission" ng-model="data.permission"
+                           placeholder="资源字符串" required>
+
+                    <p ng-show="submitForm.permission.$invalid && !submitForm.permission.$pristine" class="help-block">
+                        请输入资源字符串.</p>
                 </div>
                 <div class="form-group">
-                    <label for="permission">permission</label>
-                    <input type="text" class="form-control" id="permission" ng-model="data.permission" placeholder="资源字符串">
-                </div>
-                <div class="form-group">
-                    <label for="description">description</label>
-                    <textarea class="form-control" id="description" ng-model="data.description" placeholder="描述" rows="3"></textarea>
+                    <label for="description">描述</label>
+                    <textarea name="description" class="form-control" id="description" ng-model="data.description" placeholder="描述"
+                              rows="3"></textarea>
                 </div>
                 <div class="ngdialog-buttons">
-                    <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="confirm(data)">确定</button>
-                    <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog('button')">取消</button>
+                    <button type="button" class="ngdialog-button ngdialog-button-primary"
+                            ng-disabled="submitForm.$invalid" ng-click="confirm(data)"><i
+                            class="glyphicon glyphicon-edit"></i>保存
+                    </button>
+                    <button type="button" class="ngdialog-button ngdialog-button-secondary"
+                            ng-click="closeThisDialog('button')">取消
+                    </button>
                 </div>
             </form>
         </div>

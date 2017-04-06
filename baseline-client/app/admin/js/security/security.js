@@ -71,7 +71,7 @@ angular.module("security", ["ngResource", "ngRoute"])
             },
             logout: function () {
                 Session.destroy();
-                $location.path("/");
+                $location.path("/home");
             },
             isAuthenticated: function () {
                 if ($cookieStore.get('globals') && $cookieStore.get('globals').currentUser) {
@@ -116,11 +116,11 @@ angular.module("security", ["ngResource", "ngRoute"])
     .run(function ($rootScope, AUTH_EVENTS, AuthService, $location) {
         // $stateChangeStart if using ui-router (anglar-ui)
         $rootScope.$on(AUTH_EVENTS.notAuthenticated, function (event) {
-            $location.path("/");
+            $location.path("/home");
         });
 
         $rootScope.$on(AUTH_EVENTS.loginSuccess, function (event) {
-            $location.path("/");
+            $location.path("/home");
         });
     })
 

@@ -51,11 +51,15 @@
 
 <div ng-include="'admin/pages/login.html'"   ng-show="!isAuthenticated()"></div>
 
-<div class="wrapper" ng-show="isAuthenticated()" ng-controller="wellcomeController">
+<div class="wrapper" ng-show="isAuthenticated()" ng-controller="homeController">
   <div ng-include="'admin/pages/header.html'"></div>
   <div ng-include="'admin/pages/sidebar.html'"></div>
   <!-- 内容展示区 begin-->
-  <div class="content-wrapper"  ng-view></div>
+  <div class="content-wrapper">
+    <ui-breadcrumbs displayname-property="breadcrumb.displayName" abstract-proxy-property="breadcrumb.proxy" template-url="lib/uiBreadcrumbs/uiBreadcrumbs.tpl.html"></ui-breadcrumbs>
+    <div ui-view="main"></div>
+  </div>
+
   <!-- 内容展示区 end-->
   <div ng-include="'admin/pages/footer.html'"></div>
   <div ng-include="'admin/pages/sidebar-control.html'"></div>
@@ -112,6 +116,7 @@
 <script src="lib/angular/angular-ui-router.js"></script>
 <script src="lib/angular/angular-cookies.min.js"></script>
 
+<script src="lib/uiBreadcrumbs/uiBreadcrumbs.js"></script>
 
 <!-- 弹窗-->
 <script src="lib/ngDialog/ngDialog.min.js"></script>

@@ -1,7 +1,7 @@
 /**
  * Created by ucmed on 2017/3/24.
  */
-baselineAdmin.controller('permissionController', ['$scope', 'ngDialog', '$route','$location', 'permissionService', function ($scope, ngDialog, $route,$location, permissionService) {
+baselineAdmin.controller('permissionController', ['$scope', 'ngDialog', '$route', '$location', '$state', 'permissionService', function ($scope, ngDialog, $route, $location, $state, permissionService) {
 
     /**
      * 分页获取资源列表
@@ -63,7 +63,9 @@ baselineAdmin.controller('permissionController', ['$scope', 'ngDialog', '$route'
             className: 'ngdialog-theme-default'
         }).then(function (value) {
             permissionService.permissionAdd(value);
-            $route.reload();
+            $state.go('permission', {}, {
+                reload: true
+            });
         }, function (reason) {
         });
     };
@@ -78,7 +80,9 @@ baselineAdmin.controller('permissionController', ['$scope', 'ngDialog', '$route'
             }]
         }).then(function (value) {
             permissionService.permissionUpdate(value);
-            $route.reload();
+            $state.go('permission', {}, {
+                reload: true
+            });
         }, function (reason) {
         });
     };

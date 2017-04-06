@@ -1,7 +1,7 @@
 /**
  * Created by ucmed on 2017/3/24.
  */
-baselineAdmin.controller('userController', ['$scope', 'ngDialog', '$route', '$location', 'userService', function ($scope, ngDialog, $route, $location, userService) {
+baselineAdmin.controller('userController', ['$scope', 'ngDialog', '$route', '$location', '$state', 'userService', function ($scope, ngDialog, $route, $location, $state, userService) {
 
     /**
      * 分页获取用户列表
@@ -63,7 +63,9 @@ baselineAdmin.controller('userController', ['$scope', 'ngDialog', '$route', '$lo
             className: 'ngdialog-theme-default'
         }).then(function (value) {
             userService.userAdd(value);
-            $route.reload();
+            $state.go('user', {}, {
+                reload: true
+            });
         }, function (reason) {
         });
     };
@@ -82,7 +84,9 @@ baselineAdmin.controller('userController', ['$scope', 'ngDialog', '$route', '$lo
                     }]
                 }).then(function (value) {
                     userService.insertUpdateRole(value);
-                    $route.reload();
+                    $state.go('user', {}, {
+                        reload: true
+                    });
                 }, function (reason) {
                 });
 
@@ -100,7 +104,9 @@ baselineAdmin.controller('userController', ['$scope', 'ngDialog', '$route', '$lo
             }]
         }).then(function (value) {
             userService.userUpdate(value);
-            $route.reload();
+            $state.go('user', {}, {
+                reload: true
+            });
         }, function (reason) {
         });
     };

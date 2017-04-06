@@ -2,6 +2,8 @@
  * Created by ucmed on 2017/3/17.
  * 启动：该文件目录下执行grunt concat connect
  * 样式参考：https://github.com/BlackrockDigital/startbootstrap-sb-admin-2
+ *
+ * breadcrumb:https://github.com/michaelbromley/angularUtils
  */
 module.exports = function (grunt) {
     grunt.initConfig({

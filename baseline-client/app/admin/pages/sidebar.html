@@ -31,9 +31,9 @@
                     <span>权限管理</span>
                 </a>
                 <ul class="treeview-menu">
-                    <li ng-show="isAuthorized(userPermissions.USER_VIEW)"><a href="#user"><i class="fa fa-circle-o"></i>用户设置</a></li>
-                    <li ng-show="isAuthorized(userPermissions.USER_VIEW)"><a href="#role"><i class="fa fa-circle-o"></i>角色设置</a></li>
-                    <li ng-show="isAuthorized(userPermissions.USER_VIEW)"><a href="#permission"><i class="fa fa-circle-o"></i>资源设置</a></li>
+                    <li ng-show="isAuthorized(userPermissions.USER_VIEW)"><a ui-sref="user"><i class="fa fa-circle-o"></i>用户设置</a></li>
+                    <li ng-show="isAuthorized(userPermissions.USER_VIEW)"><a ui-sref="role"><i class="fa fa-circle-o"></i>角色设置</a></li>
+                    <li ng-show="isAuthorized(userPermissions.USER_VIEW)"><a ui-sref="permission"><i class="fa fa-circle-o"></i>资源设置</a></li>
                 </ul>
             </li>
         </ul>
