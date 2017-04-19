@@ -81,7 +81,7 @@ var baselineAdmin = angular.module("baselineAdmin", ['ngCookies', "ngResource", 
                 },
                 data: {
                     public: true,
-                    permission: USER_PERMISSION.USER_VIEW
+                    permission: USER_PERMISSION.ROLE_VIEW
                 },
                 breadcrumb: {
                     displayName: '角色列表'
@@ -97,7 +97,7 @@ var baselineAdmin = angular.module("baselineAdmin", ['ngCookies', "ngResource", 
                 },
                 data: {
                     public: true,
-                    permission: USER_PERMISSION.USER_VIEW
+                    permission: USER_PERMISSION.PERMISSION_VIEW
                 },
                 breadcrumb: {
                     displayName: '资源列表'

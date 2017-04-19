@@ -9,6 +9,7 @@ import com.linksunshine.baseline.server.web.model.Role;
 import com.linksunshine.baseline.server.web.model.RolePermission;
 import com.linksunshine.baseline.server.web.model.User;
 import com.linksunshine.baseline.server.web.model.UserRole;
+import com.linksunshine.baseline.server.web.security.PasswordHelper;
 import com.linksunshine.baseline.server.web.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,19 +28,22 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
     @Autowired
     private UserRoleMapper userRoleMapper;
+    @Autowired
+    private PasswordHelper passwordHelper;
 
     public int insert(UserDTO userDTO) {
-
-        userDTO.setPassword("123456");
-        userDTO.setSalt("11111");
-
         User user = orikaBeanMapper.map(userDTO, User.class);
         user.setUserId(UUID.randomUUID().toString());
+        user.setPassword(passwordHelper.getInitPassword());
         user.setCreatedby("admin");
         user.setCreatedon(new Date());
         user.setModifiedby("admin");
         user.setModifiedon(new Date());
         user.setDeletionState("0");
+
+        //加密密码
+        passwordHelper.encryptPassword(user);
+
         return userMapper.insertSelective(user);
     }
 
@@ -47,6 +51,7 @@ public class UserServiceImpl implements UserService {
         User users = new User();
         users.setUsername(username);
         users.setDeletionState("0");
+
         return orikaBeanMapper.map(userMapper.selectOne(users), UserDTO.class);
     }
 

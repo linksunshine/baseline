@@ -5,6 +5,8 @@ import com.linksunshine.baseline.server.web.service.UserService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
+import org.apache.shiro.cache.Cache;
+import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
@@ -14,11 +16,16 @@ import org.springframework.stereotype.Component;
 /**
  * Created by ucmed on 2017/3/28.
  */
-@Component(value = "securityRealm")
 public class SecurityRealm extends AuthorizingRealm {
 
     @Autowired
+    private CacheManager shiroEhcacheManager;
+
     private UserService userService;
+
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
@@ -50,4 +57,43 @@ public class SecurityRealm extends AuthorizingRealm {
         );
         return authenticationInfo;
     }
+
+    @Override
+    public void clearCachedAuthorizationInfo(PrincipalCollection principals) {
+        super.clearCachedAuthorizationInfo(principals);
+    }
+
+    @Override
+    public void clearCachedAuthenticationInfo(PrincipalCollection principals) {
+        super.clearCachedAuthenticationInfo(principals);
+    }
+
+    @Override
+    public void clearCache(PrincipalCollection principals) {
+        super.clearCache(principals);
+    }
+
+    public void clearAllCachedAuthorizationInfo() {
+        getAuthorizationCache().clear();
+    }
+
+    public void clearAllCachedAuthenticationInfo() {
+        getAuthenticationCache().clear();
+    }
+
+    public void clearAllCache() {
+        clearAllCachedAuthenticationInfo();
+        clearAllCachedAuthorizationInfo();
+    }
+
+    public void clearAllCache(Object key) {
+        getAuthenticationCache().remove(key);
+        getAuthorizationCache().remove(key);
+        getPasswordRetryCache().remove(key);
+    }
+
+    public Cache<Object, AuthenticationInfo> getPasswordRetryCache() {
+        return shiroEhcacheManager.getCache("passwordRetryCache");
+    }
+
 }

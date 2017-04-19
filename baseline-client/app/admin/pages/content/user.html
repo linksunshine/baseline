@@ -7,7 +7,7 @@
                 </div>
                 <!-- /.col-lg-6 -->
                 <div class="col-lg-6">
-                    <div class="input-group">
+                    <div class="input-group" ng-show="isAuthorized(userPermissions.USER_SEARCH)">
                         <input type="text" class="form-control" ng-model="search" placeholder="Search for...">
                           <span class="input-group-btn">
                             <button class="btn btn-default" type="button" ng-click="searchKeyDown($event)">Go!</button>
@@ -39,7 +39,7 @@
                 <td>{{l.createdon}}</td>
                 <td>
                     <button type="button" class="btn btn-default" ng-click="roleAllocate(l)">角色分配</button>
-                    <button type="button" class="btn btn-default" ng-click="userUpdate(l)">修改</button>
+                    <button type="button" class="btn btn-default" ng-show="isAuthorized(userPermissions.USER_UPDATE)" ng-click="userUpdate(l)">修改</button>
                     <button type="button" class="btn btn-default">停用</button>
                 </td>
             </tr>

@@ -58,8 +58,8 @@
                              type="XMLMAPPER"/>
 
 
-        <table tableName="p_user_role" domainObjectName="UserRole">
-            <generatedKey column="p_user_role_id" sqlStatement="Mysql" identity="false"/>
+        <table tableName="pay_card_recharge_record" domainObjectName="PayCardRechargeRecord">
+            <generatedKey column="pay_card_recharge_record_id" sqlStatement="Mysql" identity="false"/>
         </table>
 
     </context>

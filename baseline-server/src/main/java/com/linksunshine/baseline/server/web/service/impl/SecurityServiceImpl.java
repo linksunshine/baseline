@@ -25,7 +25,7 @@ public class SecurityServiceImpl implements SecurityService {
         }
         UsernamePasswordToken token = new UsernamePasswordToken(
                 usersDTO.getUserId(), usersDTO.getPassword());
-
+        token.setRememberMe(true);
         Subject subject = SecurityUtils.getSubject();
         subject.login(token);
         subject.getSession().setAttribute("userid", usersDTO.getUserId());

@@ -39,17 +39,9 @@ public class LoginController extends BaseController {
         UserDTO userForAuth = null;
 
         try {
-            /*userForAuth = securityService.login(user);*/
-            userForAuth=new UserDTO();
+            userForAuth = securityService.login(user);
             userForAuth.setMessageCode("200");
             userForAuth.setMessageInfo("登录成功");
-
-
-            userForAuth.setUserId(UUID.randomUUID().toString());
-            Set<String> permissions=new HashSet<String>();
-            permissions.add("S:1");
-            permissions.add("U:1");
-            userForAuth.setPermissions(permissions);
 
             return userForAuth;
         } catch (ExcessiveAttemptsException eaEx) {

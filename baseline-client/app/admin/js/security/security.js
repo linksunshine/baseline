@@ -8,32 +8,25 @@ angular.module("security", ["ngResource", "ngRoute"])
         notAuthorized: 'auth-not-authorized'
     })
     .constant('USER_PERMISSION', {
-        PROJECT_VIEW: 'P:1',
-        PROJECT_CREATE: 'P:2',
-        PROJECT_UPDATE: 'P:4',
-        PROJECT_SEARCH: 'P:16',
-        PROJECT_SOFTWARE: 'P:32',
-        SOFTWARE_VIEW: 'S:1',
-        SOFTWARE_CREATE: 'S:2',
-        SOFTWARE_UPDATE: 'S:4',
-        SOFTWARE_SEARCH: 'S:16',
-        SOFTWARE_VERSION: 'S:32',
-        VERSION_CREATE: 'V:2',
-        VERSION_UPDATE: 'V:4',
-        VERSION_UNSHELVE: 'V:32',
-        USER_VIEW: 'U:1',
-        USER_CREATE: 'U:2',
-        USER_UPDATE: 'U:4',
-        USER_DELETE: 'U:8',
-        USER_SEARCH: 'U:16',
-        USER_RESETPSW: 'U:32',
-        ROLE_VIEW: 'R:1',
-        ROLE_CREATE: 'R:2',
-        ROLE_UPDATE: 'R:4',
-        ROLE_DELETE: 'R:8',
-        ROLE_SEARCH: 'R:16',
-        ROLE_PERMISSION: 'R:32',
-        ROLE_USER: 'R:64'
+        USER_VIEW: 'USER:1',
+        USER_CREATE: 'USER:2',
+        USER_UPDATE: 'USER:4',
+        USER_DELETE: 'USER:8',
+        USER_SEARCH: 'USER:16',
+        USER_ALLOCATE: 'USER:32',
+
+        ROLE_VIEW: 'ROLE:1',
+        ROLE_CREATE: 'ROLE:2',
+        ROLE_UPDATE: 'ROLE:4',
+        ROLE_DELETE: 'ROLE:8',
+        ROLE_SEARCH: 'ROLE:16',
+        ROLE_ALLOCATE: 'ROLE:32',
+
+        PERMISSION_VIEW: 'PERMISSION:1',
+        PERMISSION_CREATE: 'PERMISSION:2',
+        PERMISSION_UPDATE: 'PERMISSION:4',
+        PERMISSION_DELETE: 'PERMISSION:8',
+        PERMISSION_SEARCH: 'PERMISSION:16'
     })
     .service('Session', ['$cookieStore', function ($cookieStore) {
         this.create = function (userId, userRole, userPermission) {
