@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            version="1.0">
+
+    <xsd:element name="request" type="requestElements" />
+    <xsd:element name="response" type="normalElements" />
+    <xsd:element name="key">
+        <xsd:complexType>
+            <xsd:attribute name="name" type="xsd:string" use="required" />
+            <xsd:attribute name="type" type="baseType" use="required" />
+            <xsd:attribute ref="required" />
+            <xsd:attribute name="describ" type="xsd:string" />
+            <xsd:attribute name="default" type="xsd:string" />
+            <xsd:attribute name="alias" type="xsd:string" />
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="value">
+        <xsd:complexType>
+            <xsd:attribute name="type" type="baseType" use="required" />
+            <xsd:attribute name="describ" type="xsd:string" />
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="object" type="objectElements" />
+    <xsd:element name="array" type="arrayElements" />
+    <xsd:attribute name="name" type="xsd:string" />
+    <xsd:attribute name="required">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:pattern value="true|false" />
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:attribute>
+    <xsd:simpleType name="baseType">
+        <xsd:annotation>
+            <xsd:documentation>
+                <![CDATA[ same java base type. ]]>
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="java.lang.Integer|java.lang.Long|java.lang.String|java.lang.Float|java.lang.Double|java.lang.Boolean" />
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="normalElements">
+        <xsd:sequence>
+            <xsd:element ref="key" minOccurs="0" maxOccurs="unbounded" />
+            <xsd:element ref="object" minOccurs="0" maxOccurs="unbounded" />
+            <xsd:element ref="array" minOccurs="0" maxOccurs="unbounded" />
+        </xsd:sequence>
+        <xsd:attribute ref="required" />
+        <xsd:attribute name="describ" type="xsd:string" />
+        <xsd:attribute name="alias" type="xsd:string" />
+    </xsd:complexType>
+    <xsd:element name="element">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:choice minOccurs="1" maxOccurs="1">
+                    <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element ref="key" />
+                        <xsd:element ref="element" />
+                    </xsd:choice>
+                    <xsd:choice minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>
+                                <![CDATA[ if type is key, only use value. ]]>
+                            </xsd:documentation>
+                        </xsd:annotation>
+                        <xsd:element ref="value" />
+                    </xsd:choice>
+                </xsd:choice>
+            </xsd:sequence>
+            <xsd:attribute name="type" default="key">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:pattern value="object|key|array" />
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:attribute>
+            <xsd:attribute name="name" type="xsd:string" />
+            <xsd:attribute name="alias" type="xsd:string" />
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="arrayElements">
+        <xsd:sequence>
+            <xsd:element ref="element" minOccurs="1" maxOccurs="1" />
+        </xsd:sequence>
+        <xsd:attribute name="min" default="0" type="xsd:int" use="optional" />
+        <xsd:attribute name="max" default="0" type="xsd:int" use="optional" />
+        <xsd:attribute ref="name" use="required" />
+        <xsd:attribute ref="required" />
+        <xsd:attribute name="describ" type="xsd:string" use="optional" />
+        <xsd:attribute name="alias" type="xsd:string" />
+    </xsd:complexType>
+
+    <xsd:complexType name="objectElements">
+        <xsd:complexContent>
+            <xsd:extension base="normalElements">
+                <xsd:attribute ref="name" use="required" />
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="requestElements">
+        <xsd:complexContent>
+            <xsd:extension base="normalElements">
+                <xsd:attribute name="login" default="false">
+                    <xsd:annotation>
+                        <xsd:documentation>
+                            <![CDATA[ is login api. ]]>
+                        </xsd:documentation>
+                    </xsd:annotation>
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:pattern value="true|false" />
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:attribute>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:element name="api">
+        <xsd:annotation>
+            <xsd:documentation>
+                <![CDATA[ api defined. ]]>
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="describ" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                <xsd:element ref="request" minOccurs="1" maxOccurs="1" />
+                <xsd:element ref="response" minOccurs="1" maxOccurs="1" />
+            </xsd:sequence>
+            <xsd:attribute name="name" type="xsd:string" use="required" />
+            <xsd:attribute name="describ" type="xsd:string" use="optional" />
+        </xsd:complexType>
+        <xsd:key name="uniqueKey" >
+            <xsd:selector xpath=".//api" />
+            <xsd:field xpath="@name" />
+        </xsd:key>
+    </xsd:element>
+</xsd:schema>
